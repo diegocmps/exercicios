@@ -1,7 +1,7 @@
 const prompt = require("prompt-sync")()
 
 const numeros = []
-const quantosNumeros = parseInt(prompt("Quantos numeros deseja informar?"))
+const quantosNumeros = parseInt(prompt("Quantos numeros deseja informar? "))
 
 for(i = 0; i < quantosNumeros; i++){
     const addNum = parseFloat(prompt("Digite um número: "))

@@ -8,4 +8,10 @@ for(i = 0; i < 5; i++){
         
 }
 
-numeros.map(function (numAtual){console.log("O número atual é: " + numAtual)})
+numeros.map((numAtual)=>{console.log("O número atual é: " + numAtual)})
+
+// Exibição do resultado através do for:
+
+// for (const numero of numeros) {
+//     console.log(numero);
+// }
