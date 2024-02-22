@@ -1,10 +1,12 @@
 const prompt = require("prompt-sync")()
 
-let numerosOrdenados = []
+const numeros = [];
 
 for(i = 0; i < 5; i++){
     const addNum = prompt("Digite um número: ")
-    numerosOrdenados.push(addNum) 
+    numeros.push(addNum) 
 }  
+const numerosOrdenados = numeros.sort((a, b) => a - b);
 
-console.log(numerosOrdenados.sort())
+console.log("Números ordenados:", numerosOrdenados);
+
