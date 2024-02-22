@@ -1,5 +1,11 @@
-const PromptSync = require("prompt-sync")
+const prompt = require("prompt-sync")()
 
-let numeros = [4, 8, 15, 16, 23]
+const numeros = []
+const quantosNumeros = parseInt(prompt("Quantos numeros deseja informar?"))
 
-numeros.reduce()
+for(i = 0; i < quantosNumeros; i++){
+    const addNum = parseFloat(prompt("Digite um número: "))
+    numeros.push(addNum) 
+}
+const soma = numeros.reduce((numTotal, num)=> numTotal + num, 0)
+console.log("A soma dos números é: ", + soma)
