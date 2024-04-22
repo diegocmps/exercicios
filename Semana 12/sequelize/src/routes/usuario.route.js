@@ -18,7 +18,7 @@ usuarioRoute.get('/', auth, async (req, res) => {
 
 })
 
-usuarioRoute.get('/alunos', async (req, res) => {
+usuarioRoute.get('/alunos', auth, async (req, res) => {
     try {
 
         const alunos = await Usuario.findAll({where: { tipo: 'Aluno' }});
@@ -31,7 +31,7 @@ usuarioRoute.get('/alunos', async (req, res) => {
     }
 });
 
-usuarioRoute.get('/professores', async (req, res) => {
+usuarioRoute.get('/professores', auth, async (req, res) => {
     try {
 
         const professores = await Usuario.findAll({where: { tipo: 'Professor' }});
