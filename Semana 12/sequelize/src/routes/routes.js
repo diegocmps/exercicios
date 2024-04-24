@@ -6,6 +6,8 @@ const loginRoutes = require("./login.route");
 
 
 
+
+
 const routes = new Router()
 
 routes.use('/usuario', usuarioRoute)
