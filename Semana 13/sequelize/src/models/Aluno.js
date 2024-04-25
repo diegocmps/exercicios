@@ -1,18 +1,19 @@
 const { DataTypes } = require("sequelize");
 const { connection } = require("../database/connection");
+const { hash } = require('bcryptjs')
 
 const Aluno = connection.define('alunos', {
 
     email: {
         type: DataTypes.STRING,
-        allowNull: false 
+        allowNull: false
     },
     password: {
         type: DataTypes.STRING,
-        allowNull: false 
+        allowNull: false
     },
     nome: {
-        type: DataTypes.STRING 
+        type: DataTypes.STRING
     },
     data_nascimento: {
         type: DataTypes.DATE
@@ -20,6 +21,14 @@ const Aluno = connection.define('alunos', {
     celular: {
         type: DataTypes.STRING
     }
+})
+
+// hooks Sequelize
+
+Aluno.beforeSave(async (user) => {
+
+    user.password = await hash(user.password, 8)
+    return user
 })
 
 module.exports = Aluno
