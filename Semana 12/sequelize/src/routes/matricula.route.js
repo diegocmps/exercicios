@@ -1,11 +1,11 @@
 const { Router } = require("express");
+const { auth } = require("../Middleware/Auth");
 const MatriculaController = require("../controllers/MatriculaController");
-const { auth } = require("../middleware/auth");
+
 
 const matriculaRoutes = new Router()
 
-matriculaRoutes.get('/', auth, MatriculaController.listar)
+matriculaRoutes.post('/', MatriculaController.cadastrar)
 
-matriculaRoutes.post('/', auth, MatriculaController.cadastrar)
 
 module.exports = matriculaRoutes
