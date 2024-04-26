@@ -53,7 +53,7 @@ class UsuarioController {
 
             if (!email) {
                 return res.status(400).json({ message: "O email é obrigatório." })
-            }
+            }            
 
             if (!password) {
                 return res.status(400).json({ message: "A senha é obrigatória." })
@@ -74,6 +74,17 @@ class UsuarioController {
             if (!tipo) {
                 return res.status(400).json({ message: "O tipo é obrigatório." })
             }
+
+            const existingUser = await Usuario.findOne({
+                where: {
+                    email: email
+                }
+            })
+
+            if(existingUser){
+                return res.status(409).json({message: "E-mail já cadastrado."})
+            }
+            
 
             const usuario = await Usuario.create({
 
