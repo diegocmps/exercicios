@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { connection } = require("../database/connection");
+const { hash } = require("bcryptjs");
 
 
 const Usuario = connection.define('usuario', {
@@ -24,5 +25,14 @@ const Usuario = connection.define('usuario', {
         type: DataTypes.STRING
     },
 })
+
+Usuario.beforeSave(async (user) => {
+
+    user.password = await hash(user.password, 8)
+
+    return user
+})
+
+
 
 module.exports = Usuario
