@@ -4,6 +4,30 @@ const Usuario = require("../models/Usuario")
 
 class MatriculaController {
 
+
+
+    async listar (req, res){
+
+        try {
+
+            const matricula = await Matricula.findAll()
+
+            res.json(matricula)
+        }
+            
+         catch (error) {
+
+            res.status(500).json({message: "Erro."})
+            console.log(message.error)
+            
+        }
+
+    }
+
+
+
+
+
     async cadastrar(req, res) {
 
         try {
@@ -14,16 +38,27 @@ class MatriculaController {
                 return res.status(400).json({ message: "O ID do aluno e do curso são obrigatórios." })
             }
 
-            const usuario = Usuario.findByPk(usuario_id)
+            const usuario = await Usuario.findByPk(usuario_id)
 
             if (!usuario) {
                 return res.status(404).json({ message: "Usuário não existe." })
             }
 
-            const curso = Curso.findByPk(curso_id)
+            const curso = await Curso.findByPk(curso_id)
 
             if (!curso) {
                 return res.status(404).json({ message: "O curso não existe." })
+            }
+
+            const matriculaExistente = await Matricula.findOne({
+                where: {
+                    usuario_id: usuario_id,
+                    curso_id: curso_id
+                }
+            })
+
+            if(matriculaExistente){
+                return res.status(409).json({message: "Aluno já cadastrado para este curso."})
             }
 
             const matricula = await Matricula.create({
