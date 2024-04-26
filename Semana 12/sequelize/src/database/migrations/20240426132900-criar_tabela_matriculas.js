@@ -10,11 +10,11 @@ module.exports = {
        primaryKey: true,
        type: Sequelize.INTEGER
       },
-      aluno_id: {
+      usuario_id: {
        allowNull: false,
        type: Sequelize.INTEGER,
        references: {
-         model: 'alunos',
+         model: 'usuarios',
          key: 'id'
        },
        onUpdate: 'CASCADE',
